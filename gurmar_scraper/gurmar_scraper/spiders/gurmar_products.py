@@ -35,7 +35,7 @@ import scrapy
 class GTINSpider(scrapy.Spider):
     name = 'gtin'
     allowed_domains = ['gurmar.com.tr']
-    start_urls = ['https://www.gurmar.com.tr/at%C4%B1stirmaliklar']
+    start_urls = ['https://www.gurmar.com.tr/deterjan-temizlik']
 
     def parse(self, response):
         # Extracting the URLs of the product detail pages
@@ -46,10 +46,10 @@ class GTINSpider(scrapy.Spider):
         # Construct the URL for the next page
         current_page_number = response.url.split('pagenumber=')[-1] if 'pagenumber=' in response.url else 1
         next_page_number = int(current_page_number) + 1
-        next_page_url = f"https://www.gurmar.com.tr/at%C4%B1stirmaliklar?pagenumber={next_page_number}"
+        next_page_url = f"https://www.gurmar.com.tr/deterjan-temizlik?pagenumber={next_page_number}"
 
         # Check if there are products on the next page by checking if any product URLs were extracted
-        while(next_page_number < 6):
+        while(next_page_number < 12):
             if product_urls:
                 yield response.follow(next_page_url, self.parse)
             next_page_number += 1

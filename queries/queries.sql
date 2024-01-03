@@ -19,3 +19,7 @@ INSERT INTO prices (price, product_id)
 SELECT NEW_PRICE, p.gtin
 FROM products p
 WHERE p.name = PRODUCT_NAME_FROM_THE_SLIP_SCAN;
+
+--- Query for inserting with GTIN number
+INSERT INTO prices (price, product_id)
+SELECT NEW_PRICE, GTIN;
